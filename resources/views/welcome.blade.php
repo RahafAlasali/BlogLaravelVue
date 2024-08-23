@@ -1,23 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')  
+@section('title', 'Page Title')
 
-        <title>Laravel</title>
+@section('content')
+        <div class="max-w-7xl mx-auto p-6 lg:p-8">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
-      
-    </head>
-    <body class="antialiased">
-      
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-
-                    <h1>Welcome</h1>
-            </div>
-     
-    </body>
-</html>
+        <h1>Welcome</h1>
+        <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        </div>   
+@endsection

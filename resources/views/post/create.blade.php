@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
+@extends('layout')  
+@section('title', 'post')
+@section('content')
     create Post
     <form action="/post" method="POST">
         @csrf
-        <label for="title"> Title</label>
-        <input type="text" name="title" id="title" value="{{old('title')}}" >
+        <label for="title"  class="form-label"> Title</label>
+        <input type="text" name="title" id="title" class="form-control" value="{{old('title')}}" >
        
         @error('title') 
         <div>{{$message}}</div>
         @enderror
         <br>
-        <label for="desc" > Title</label>
-        <input type="text" name="desc" id="desc" value="{{old('desc')}}"  >
+        <label for="desc"  class="form-label"> Description</label>
+        <input type="text" name="desc" id="desc" class="form-control" value="{{old('desc')}}"  >
         @error('desc') 
         <div>{{$message}}</div>
         @enderror
-        <input type="submit">
+        <button type="submit" class="btn btn-outline-primary my-4">Create</button>
     </form>
-</body>
-</html>
+    @endsection

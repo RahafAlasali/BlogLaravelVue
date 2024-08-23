@@ -9,7 +9,7 @@ class apiPostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(3);
     
         return  response()->json($posts);
     }
@@ -17,14 +17,9 @@ class apiPostController extends Controller
     public function show($id)
     {
         $post=  Post::findOrFail($id);
-        return ;
+        return response()->json($post) ;
     }
 
-    public function create()
-    {
-        
-        return view('post.create');
-    }
 
     public function store(Request  $req)
     {
@@ -34,7 +29,7 @@ class apiPostController extends Controller
         $post->description = $req->desc ;
         $req->validate(['title'=>'required','desc'=>'required']);
         $post->save();
-        return ;
+        return response()->json($post);
     }
      
 
@@ -44,13 +39,13 @@ class apiPostController extends Controller
         $post->title = $req->title;
         $post->description = $req->desc ;     
         $post->save();
-        return ;
+        return  response()->json($post);
      }
 
     public function destroy($id)
     {
         $post =  Post::findOrFail($id);
         $post->delete();
-        return ;
+        return  'DELETEPOET ';
     }
 }

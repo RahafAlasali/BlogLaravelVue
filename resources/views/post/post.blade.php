@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-   Title {{$post->title}}
+@extends('layout')  
+@section('title', 'post')
+@section('content')   
+<span style="font-weight:bold; font-size:x-large">Title</span> {{$post->title}}
    <br>
-   Description {{ $post->description}}
-</body>
-</html>
+   <span style="font-weight:bold; font-size:x-large">Description</span>{{ $post->description}}
+ @endsection

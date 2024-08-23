@@ -1,33 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post</title>
-</head>
-<body>
-   
-
-    <div>
- 
-  
+@extends('layout')  
+@section('title', 'post')
+@section('content')
     @foreach ($posts as $post)
-    <p>Title {{ $post->title }}</p>
-    <p>Description {{ $post->description }}</p>
-    <form action="/post/{{$post->id}}" method="POST">
+    <div>
+    <span style="font-weight:bold; font-size:x-large">Title</span>  {{ $post->title }}
+    <br>
+    <span  style="font-weight:bold; font-size:x-large">Description  </span> {{ $post->description }}
+</div>
+   <div class="d-inline-block">
+    <form action="/post/{{$post->id}}" method="POST" >
         @method("delete")
         @csrf
-    <button > Delete</button>
-
+   
+    <button type="submit" class="btn btn-outline-primary ">Delete</button>
     </form>
-    <div>
-    <form action="/post/{{$post->id}}/edit" method="GET">
-    
-    <a >    <button> Update</button></a>
+</div>
+   <div class="d-inline-block">
+    <form action="/post/{{$post->id}}/edit"  method="GET">  
+    <a> <button type="submit" class="btn btn-outline-primary">Update</button>  </a>
     </form>
-    </div>
+</div>
     @endforeach
      
     </div>
-</body>
-</html>
+@endsection
