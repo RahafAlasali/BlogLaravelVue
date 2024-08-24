@@ -32,6 +32,10 @@ class PostController extends Controller
         $post =  new Post();
         $post->title = $req->title ;
         $post->description = $req->desc ;
+        $file_name = time() . '.' . $req->file('image')->getClientOriginalExtension();
+        $req->file('image')->move(public_path('images'), $file_name);
+        $post->image = $file_name;
+
         $req->validate(['title'=>'required','desc'=>'required']);
         $post->save();
         return redirect('post');

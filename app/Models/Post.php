@@ -9,6 +9,7 @@ use App\Models\Comment;
 class Post extends Model
 {
     use HasFactory;
+    public $fillable = ['image'];
     public function comment()
     {
         return $this->hasMany(Comment::class);
