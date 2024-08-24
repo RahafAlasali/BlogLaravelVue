@@ -18,35 +18,35 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         Post::create([
-            'title' => 'title 1',
-            'description' => 'Description 1',
+            'title' => Str::random(8),
+            'description' => Str::random(100),
         ]);
         Post::create([
             'title' => Str::random(8),
-            'description' => Str::random(10),
+            'description' => Str::random(100),
         ]);
         Post::create([
             'title' => Str::random(8),
-            'description' => Str::random(10),
+            'description' => Str::random(90),
         ]);
         Post::create([
             'title' => Str::random(10),
-            'description' => Str::random(15),
+            'description' => Str::random(80),
         ]);
         Post::create([
             'title' => Str::random(5),
-            'description' => Str::random(18),
+            'description' => Str::random(150),
         ]);
         Post::create([
             'title' => Str::random(8),
-            'description' => Str::random(30),
+            'description' => Str::random(110),
         ]);
         Comment::create([
-            'description' => Str::random(18),
+            'description' => Str::random(180),
             'post_id'=> 5
         ]);
         Comment::create([   
-            'description' => Str::random(30),
+            'description' => Str::random(100),
             'post_id'=> 4
         ]);
     }
