@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\PostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -26,7 +26,7 @@ class PostController extends Controller
         return view('post.create');
     }
 
-    public function store(Request  $req)
+    public function store(PostRequest  $req)
     {
 
         $post =  new Post();
@@ -35,8 +35,6 @@ class PostController extends Controller
         $file_name = time() . '.' . $req->file('image')->getClientOriginalExtension();
         $req->file('image')->move(public_path('images'), $file_name);
         $post->image = $file_name;
-
-        $req->validate(['title'=>'required','desc'=>'required']);
         $post->save();
         return redirect('post');
     }
@@ -47,7 +45,7 @@ class PostController extends Controller
         return view('post.postEdit',['post'=> $post]);
      }
 
-     public function update(Request $req , $id)
+     public function update(PostRequest $req , $id)
      {         
         $post =  Post::findOrFail($id);
         $post->title = $req->title;

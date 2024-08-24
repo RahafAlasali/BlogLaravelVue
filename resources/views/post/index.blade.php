@@ -1,7 +1,3 @@
-<!-- @extends('layout')
-@section('title', 'post')
-@section('content') -->
-
 <x-app-layout>
 
     <div class="row">
