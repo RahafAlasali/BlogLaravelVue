@@ -7,6 +7,9 @@ use App\Models\Post;
 
 class apiPostController extends Controller
 {
+    public function register(){
+        return response()->json(['message'=>'apiauth']);
+    }
     public function index()
     {
         $posts = Post::with('comment')->paginate(3);
@@ -25,9 +28,9 @@ class apiPostController extends Controller
     {
 
         $post =  new Post();
+        $req->validate(['title'=>'required','description'=>'required']);
         $post->title = $req->title ;
-        $post->description = $req->desc ;
-        $req->validate(['title'=>'required','desc'=>'required']);
+        $post->description = $req->description ;        
         $post->save();
         return response()->json($post);
     }
