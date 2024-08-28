@@ -7,11 +7,10 @@ use App\Models\Comment;
 
 class CommentController extends Controller
 {
-   
-    public function index()
-    {
-        $comments = Comment::all();
-        return view('comment.index',['comments'=> $comments]);
-    }
+  public function index()
+  {
+    $comments = Comment::all();
+    return view('comment.index', ['comments' => $comments]);
+  }
 
 }
