@@ -18,7 +18,7 @@ class CommentFactory extends Factory
     {
         return [
             'description' => fake()->sentence(5),
-            'post_id' => fake()->randomNumber(1)
+            'post_id' => 2
         ];
     }
 }

@@ -50,11 +50,11 @@ class apiPostController extends Controller
     {
         $post = Post::findOrFail($id);
         if (!Gate::allows('delete-post', $post)) {
-            return response()->json(['error' => 'unauthentication 403']);
+            return response()->json(['error' => 'unauthorization 403']);
 
         } else {
             $post->delete();
-            return 'DELETEPOET ';
+            return 'DELETE POST ';
         }
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class authController extends Controller
+class AuthController extends Controller
 {
     /**
      * Create a new AuthController instance.
@@ -17,7 +17,7 @@ class authController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -34,13 +34,14 @@ class authController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
 
-        if (! $token = auth()->guard('api')->attempt($credentials)) {
+        if (!$token = auth()->guard('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
         return $this->respondWithToken($token);
     }
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -54,7 +55,7 @@ class authController extends Controller
         ]);
 
         $token = Auth::guard('api')->login($user);
-       
+
 
         return response()->json([
             'status' => 'success',

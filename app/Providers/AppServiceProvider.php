@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Comment;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::define('delete-post', function (User $user, Post $post) {
             return $user->id === $post->user_id;
+        });
+        // Gate::define('delete-comment', function (User $user, Comment $comment) {
+        //     return $user->id === $comment->user_id;
+        // });
+        Gate::define('create-post', function (User $user) {
+            return auth()->check();
         });
     }
 }
