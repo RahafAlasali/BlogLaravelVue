@@ -3,7 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\RoleController;
+use Spatie\Permission\Models\Permission;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('post',PostController::class);
+Route::middleware('auth')->resource('post', PostController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,5 +31,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/role', function () {
+    $permissions = Permission::all();
+    return view('role.create', ['permissions' => $permissions]);
 
-require __DIR__.'/auth.php';
+});
+Route::post('role', [RoleController::class, 'store'])->name('role');
+Route::get('role/edit/{id}', [RoleController::class, 'edit']);
+Route::post('role/update/{id}', [RoleController::class, 'update'])->name('role.update');
+
+require __DIR__ . '/auth.php';
