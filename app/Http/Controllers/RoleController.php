@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function store(Request $req)
+
+    public function create()
     {
-        $name = $req->name;
-        $role = Role::create(['name' => $name]);
-        $role->givePermissionTo($req->permissions);
-        return redirect('/');
+
+        $permissions = Permission::all();
+        return view('role.create', ['permissions' => $permissions]);
     }
     public function edit($id)
     {
@@ -21,6 +21,13 @@ class RoleController extends Controller
 
         $permissions = Permission::all();
         return view('role.edit', ['role' => $role, 'permissions' => $permissions]);
+    }
+    public function store(Request $req)
+    {
+        $name = $req->name;
+        $role = Role::create(['name' => $name]);
+        $role->givePermissionTo($req->permissions);
+        return redirect('/');
     }
     public function update(Request $req, $id)
     {

@@ -32,11 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::get('/role', function () {
-    $permissions = Permission::all();
-    return view('role.create', ['permissions' => $permissions]);
-
-});
+Route::get('/role', [RoleController::class, 'create']);
 Route::post('role', [RoleController::class, 'store'])->name('role');
 Route::get('role/edit/{id}', [RoleController::class, 'edit']);
 Route::post('role/update/{id}', [RoleController::class, 'update'])->name('role.update');
