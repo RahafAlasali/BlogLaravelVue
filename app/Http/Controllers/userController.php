@@ -7,6 +7,10 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 class userController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:edit-user'])->only(['edit', 'store']);
+    }
     public function edit($id)
     {
         $user = User::find($id);

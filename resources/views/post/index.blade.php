@@ -5,11 +5,10 @@
             {{-- @if (Gate::allows('create-post'))
                 <a href="{{ route('post.create') }}"> Create</a>
             @endif --}}
-            @can('create post')
+            @if (auth()->user()->hasAnyPermission(['create-post']))
                 <a href="{{ route('post.create') }}"> Create</a>
-            @endcan
+            @endif
         </div>
-
 
         @foreach ($posts as $post)
             <div class="col-4 my-2">
@@ -29,12 +28,14 @@
                         </div>
                         <div class="justify-content-end d-inline-block">
                             <a href="{{ route('post.show', $post->id) }}">read more</a>
-                            @can('edit post')
+                            @can('edit-post')
                                 <a href="{{ route('post.edit', $post->id) }}">Edit</a>
                             @endcan
-                            <div class="d-inline-block">
-                                <a href="{{ route('post.destroy', $post->id) }}">Delete</a>
-                            </div>
+                            @can('delete-post')
+                                <div class="d-inline-block">
+                                    <a href="{{ route('post.destroy', $post->id) }}">Delete</a>
+                                </div>
+                            @endcan
                         </div>
 
                     </div>

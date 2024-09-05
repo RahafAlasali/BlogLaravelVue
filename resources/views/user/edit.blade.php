@@ -11,7 +11,7 @@
         <label for="role" class="form-label">Role:</label>
 
         <div>
-            <select name="role[]" id="role" multiple class="form-control">
+            <select name="role[]" id="role" class="form-select" size="3" aria-label="size 3 select example">
                 @foreach ($roles as $role)
                     <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
                         {{ $role->name }}

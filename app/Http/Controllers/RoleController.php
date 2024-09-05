@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware(['permission:edit-post'])->only(['edit', 'store']);
+    }
     public function create()
     {
 
