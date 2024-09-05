@@ -40,14 +40,15 @@
                 </div>
             </div>
 
-            <!-- <div class="d-inline-block">
-        <form action="/post/{{ $post->id }}" method="POST">
-            @method('delete')
-            @csrf
+            <div class="d-inline-block">
+                <a href="{{ route('post.delete', $post->id) }}"></a>
+                <!--  <form action="/post/{{ $post->id }}" method="POST">
+            {{-- @method('delete')
+            @csrf --}}
 
             <button type="submit" class="btn btn-outline-primary ">Delete</button>
-        </form>
-    </div>-->
+        </form>-->
+            </div>
         @endforeach
     </div>
     </div>

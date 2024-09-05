@@ -14,7 +14,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        // Auth::user()->givePermissionTo('edit_post');
         $user = Auth::user()->hasPermissionTo('edit_post');
         return view('post.index', ['posts' => $posts, 'user' => $user]);
     }

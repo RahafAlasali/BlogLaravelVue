@@ -20,6 +20,9 @@
                     <x-nav-link href="{{ route('role') }}">
                         Role
                     </x-nav-link>
+                    <x-nav-link href="#">
+                        User
+                    </x-nav-link>
                 </div>
             </div>
 

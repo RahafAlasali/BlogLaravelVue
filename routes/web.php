@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\userController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,5 +40,6 @@ Route::get('/role', function () {
 Route::post('role', [RoleController::class, 'store'])->name('role');
 Route::get('role/edit/{id}', [RoleController::class, 'edit']);
 Route::post('role/update/{id}', [RoleController::class, 'update'])->name('role.update');
-
+Route::get('user/edit/{id}', [userController::class, 'edit']);
+Route::put('user//update/{id}', [userController::class, 'update'])->name('user.update');
 require __DIR__ . '/auth.php';
