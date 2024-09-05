@@ -9,7 +9,6 @@
         <label for="email" class="form-label"> Email</label>
         <input type="text" name="email" id="email" class="form-control" value="{{ $user->email }}">
         <label for="role" class="form-label">Role:</label>
-        {{ $user->getRoleNames() }}
 
         <div>
             <select name="role[]" id="role" multiple class="form-control">

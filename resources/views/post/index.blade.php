@@ -27,27 +27,18 @@
                             <h5 class="card-title"> {{ $post->title }}</h5>
                             <p class="card-text">{{ $post->description }}</p>
                         </div>
-                        <div class="justify-content-end">
+                        <div class="justify-content-end d-inline-block">
                             <a href="{{ route('post.show', $post->id) }}">read more</a>
                             @can('edit post')
-                                <form action="/post/{{ $post->id }}/edit" method="GET">
-                                    <button type="submit" class="btn btn-outline-primary mt-3">Edit</button>
-                                </form>
+                                <a href="{{ route('post.edit', $post->id) }}">Edit</a>
                             @endcan
+                            <div class="d-inline-block">
+                                <a href="{{ route('post.destroy', $post->id) }}">Delete</a>
+                            </div>
                         </div>
 
                     </div>
                 </div>
-            </div>
-
-            <div class="d-inline-block">
-                <a href="{{ route('post.delete', $post->id) }}"></a>
-                <!--  <form action="/post/{{ $post->id }}" method="POST">
-            {{-- @method('delete')
-            @csrf --}}
-
-            <button type="submit" class="btn btn-outline-primary ">Delete</button>
-        </form>-->
             </div>
         @endforeach
     </div>

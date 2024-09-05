@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Post;
-
+use Spatie\Permission\Models\Role;
 class apiPostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role_or_permission:Admin'])->only(['destroy', 'store']);
+        // $this->middleware(['role:Admin'])->only(['destroy', 'store']);
+    }
     public function register()
     {
         return response()->json(['message' => 'apiauth']);
@@ -49,12 +54,10 @@ class apiPostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        if (!Gate::allows('delete-post', $post)) {
-            return response()->json(['error' => 'unauthorization 403']);
+        // if (!Gate::allows('delete-post', $post)) {
+        //     return response()->json(['error' => 'unauthorization 403']);
+        $post->delete();
+        return 'DELETE POST ';
 
-        } else {
-            $post->delete();
-            return 'DELETE POST ';
-        }
     }
 }

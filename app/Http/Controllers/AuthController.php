@@ -27,7 +27,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // 
+
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -54,7 +54,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = Auth::guard('api')->login($user);
+        $token = auth()->guard('api')->login($user);
 
 
         return response()->json([

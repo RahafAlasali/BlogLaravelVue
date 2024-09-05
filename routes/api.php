@@ -29,11 +29,15 @@ Route::group([
 
 });
 
-Route::post('register', [AuthController::class, 'register']);
+Route::middleware('auth:api')->post('register', [AuthController::class, 'register']);
 
 Route::middleware('auth:api')->apiResource('post', apiPostController::class);
+//['auth:api', 'can:Admin']
 Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
