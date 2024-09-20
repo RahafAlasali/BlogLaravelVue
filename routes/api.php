@@ -2,8 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\apiPostController;
-use App\Http\Controllers\apiCommentController;
+use App\Http\Controllers\Api\apiPostController;
+use App\Http\Controllers\Api\apiCommentController;
 use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -31,9 +31,12 @@ Route::group([
 
 Route::middleware('auth:api')->post('register', [AuthController::class, 'register']);
 
-Route::middleware('auth:api')->apiResource('post', apiPostController::class);
+// Route::middleware('auth:api')->apiResource('post', apiPostController::class);
+Route::apiResource('post', apiPostController::class);
 //['auth:api', 'can:Admin']
-Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
+// Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
+Route::apiResource('comment', apiCommentController::class);
+
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

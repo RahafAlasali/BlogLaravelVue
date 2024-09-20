@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Post;
@@ -18,9 +20,9 @@ class apiPostController extends Controller
     }
     public function index()
     {
-        $posts = Post::with('comment')->with('user')->paginate(3);
+        $posts = Post::with('comment', 'user')->paginate(3);
 
-        return response()->json($posts);
+        return PostResource::collection($posts);
     }
 
     public function show($id)
@@ -34,11 +36,12 @@ class apiPostController extends Controller
     {
 
         $post = new Post();
+        //add request to rule
         $req->validate(['title' => 'required', 'description' => 'required']);
         $post->title = $req->title;
         $post->description = $req->description;
         $post->save();
-        return response()->json($post);
+        return PostResource::make($post);
     }
 
 
@@ -48,7 +51,7 @@ class apiPostController extends Controller
         $post->title = $req->title;
         $post->description = $req->desc;
         $post->save();
-        return response()->json($post);
+        return PostResource::make($post);
     }
 
     public function destroy($id)
