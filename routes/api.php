@@ -35,7 +35,7 @@ Route::middleware('auth:api')->post('register', [AuthController::class, 'registe
 Route::apiResource('post', apiPostController::class);
 //['auth:api', 'can:Admin']
 // Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
-Route::apiResource('comment', apiCommentController::class);
+Route::apiResource('post/{post}/comment', apiCommentController::class);
 
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

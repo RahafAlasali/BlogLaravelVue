@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
@@ -32,7 +33,7 @@ class apiPostController extends Controller
     }
 
 
-    public function store(Request $req)
+    public function store(PostRequest $req)
     {
 
         $post = new Post();

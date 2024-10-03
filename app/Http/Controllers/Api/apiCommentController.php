@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
+use App\Models\Post;
+use App\Notifications\commentPost;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Comment;
@@ -21,6 +24,20 @@ class apiCommentController extends Controller
         })->paginate(5);
         return CommentResource::collection($comments);
 
+    }
+    public function store(Request $request, $id)
+    {
+
+        $post = Post::findOrFail($id);
+        $comment = new Comment();
+        $comment->description = $request->description;
+        $comment->post_id = $id;
+        $comment->save();
+        $user = Auth::guard('api')->user();
+        if ($user) {
+            $user->notify(new commentPost());
+        }
+        return new CommentResource($comment);
     }
     public function destroy($id)
     {
