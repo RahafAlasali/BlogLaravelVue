@@ -47,7 +47,10 @@
                     </div>
                 </div>
             @endforeach
+            <div class="mt-4 d-flex justify-center">
 
+                {{ $posts->withQueryString()->links() }}
+            </div>
         </div>
         <div class=" my-6 py-4 text-center">
 
