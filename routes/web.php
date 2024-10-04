@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -22,6 +23,7 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->resource('post', PostController::class);
+Route::middleware('auth')->resource('post/{post}/comment', CommentController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,4 +40,5 @@ Route::get('role/edit/{id}', [RoleController::class, 'edit']);
 Route::post('role/update/{id}', [RoleController::class, 'update'])->name('role.update');
 Route::get('user/edit/{id}', [userController::class, 'edit']);
 Route::put('user//update/{id}', [userController::class, 'update'])->name('user.update');
+
 require __DIR__ . '/auth.php';

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\apiRoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\apiPostController;
@@ -33,6 +34,7 @@ Route::middleware('auth:api')->post('register', [AuthController::class, 'registe
 
 // Route::middleware('auth:api')->apiResource('post', apiPostController::class);
 Route::apiResource('post', apiPostController::class);
+Route::apiResource('role', apiRoleController::class);
 //['auth:api', 'can:Admin']
 // Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
 Route::apiResource('post/{post}/comment', apiCommentController::class);
