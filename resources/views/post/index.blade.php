@@ -29,7 +29,8 @@
                                 <h5 class="card-title">
                                     <a href="{{ route('post.show', $post->id) }}" class="">{{ $post->title }}</a>
                                 </h5>
-                                <span class="text-muted letter-spacing text-uppercase font-sm">April 19, 2019</span>
+                                <span class="text-muted letter-spacing text-uppercase font-sm "
+                                    style="font-family: Montserrat">{{ $post->created_at->format('MM d,Y') }}</span>
                             </div>
                             <div class="justify-content-end d-inline-block">
                                 {{-- <a href="{{ route('post.show', $post->id) }}">read more</a> --}}
@@ -52,7 +53,8 @@
                 {{ $posts->withQueryString()->links() }}
             </div>
         </div>
-        <div class=" my-6 py-4 text-center">
+        {{-- component  subscribe --}}
+        <div class=" py-6  text-center">
 
             <h3> Subscribe Newsletter </h3>
             <div class="my-2">Subscribe my Newsletter for new blog posts , tips and info.</div>

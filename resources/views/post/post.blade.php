@@ -1,26 +1,31 @@
 <x-app-layout>
 
     <div class="row ">
-        <div class=" my-2 col-md-5 mx-auto">
-            <div class="my-2 py-2">
-                <h2>{{ $post->title }}</h2>
-            </div>
+        <div class=" my-2 col-md-8 ">
+
             <div class="">
                 @if ($post->image)
-                    <img class="img-fluid text-center" src="{{ asset('images/' . $post->image) }}" alt="">
+                    <img class="img" src="{{ asset('images/' . $post->image) }}" alt="">
                 @else
-                    <img class=" img-fluid" src="https://demo.themefisher.com/revolve-bootstrap/images/news/f2.jpg"
-                        style="max-height: 300px" alt="">
+                    <img class=" img" src="{{ asset('images/blog_2.jpg') }}" style="max-height: 300px" alt="">
                 @endif
             </div>
+            <div class="mt-1 pt-2" style="font-family: raleway;font-size: 30px">
+                <h1>{{ $post->title }}</h1>
+            </div>
+            <div style="font-family: Montserrat">
+                <span class="text-muted letter-spacing  font-sm ">by {{ $post->user->name }} </span>
+                <span class="text-muted letter-spacing font-sm mx-4">{{ $post->created_at->format('M d,Y') }}</span>
+            </div>
+            <hr>
 
             <div class="mt-3 py-2">
-                <p> {{ $post->description }}</p>
+                <p class="text-muted letter-spacing" style="font-family: Montserrat"> {{ $post->description }}</p>
             </div>
             <hr>
             @if (count($post->comment))
                 <div class="mt-4">
-                    <h3>Comment</h3>
+                    <h3 style="font-family: raleway;font-size: 30px">Comment</h3>
                     <p>
 
                         @foreach ($post->comment as $comment)
@@ -43,7 +48,14 @@
                     </p>
                 </div>
             @endif
-
+            <div class="mt-1 pb-4">
+                <form action="{{ route('comment.store', $post->id) }}" method="POST">
+                    @csrf
+                    <label for="desc" class="form-label">Comment</label>
+                    <textarea class="form-control" id="desc" name="description" rows="3"></textarea>
+                    <button type="submit" class="btn  btn-primary mt-2"> submit </button>
+                </form>
+            </div>
         </div>
     </div>
 </x-app-layout>

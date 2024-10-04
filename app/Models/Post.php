@@ -12,6 +12,7 @@ class Post extends Model
 {
     use HasFactory;
     public $fillable = ['image', 'title', 'description'];
+
     public function comment()
     {
         return $this->hasMany(Comment::class);

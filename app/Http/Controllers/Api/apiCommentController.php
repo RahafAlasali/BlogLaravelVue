@@ -33,6 +33,7 @@ class apiCommentController extends Controller
         $comment->description = $request->description;
         $comment->post_id = $id;
         $comment->save();
+        $user = $post->user;
         $user = Auth::guard('api')->user();
         if ($user) {
             $user->notify(new commentPost());
