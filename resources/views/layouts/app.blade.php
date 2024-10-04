@@ -31,7 +31,7 @@
                 </div>
             </header>
         @endif
-
+        @include('layouts.header')
 
         <!-- Page Content -->
         <main class="container mt-4">
