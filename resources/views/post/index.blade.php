@@ -29,11 +29,11 @@
                                 <h5 class="card-title">
                                     <a href="{{ route('post.show', $post->id) }}" class="">{{ $post->title }}</a>
                                 </h5>
-                                <span class="text-muted letter-spacing text-uppercase font-sm "
-                                    style="font-family: Montserrat">{{ $post->created_at->format('MM d,Y') }}</span>
+                                <span class="text-muted letter-spacing  font-sm "
+                                    style="font-family: Montserrat">{{ $post->created_at->format('M d,Y') }}</span>
                             </div>
                             <div class="justify-content-end d-inline-block">
-                                {{-- <a href="{{ route('post.show', $post->id) }}">read more</a> --}}
+
                                 @can('edit-post')
                                     <a href="{{ route('post.edit', $post->id) }}">Edit</a>
                                 @endcan
@@ -59,7 +59,7 @@
             <h3> Subscribe Newsletter </h3>
             <div class="my-2">Subscribe my Newsletter for new blog posts , tips and info.</div>
             <form class="d-flex my-3 w-50 m-auto">
-                <input type="email" placeholder="email" class="form-control" />
+                <input type="email" placeholder="Email" class="form-control" />
                 <button class="btn btn-dark">Subscribe</button>
             </form>
 

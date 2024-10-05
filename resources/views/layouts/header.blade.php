@@ -11,13 +11,13 @@
         <div class="carousel-inner" style="padding-bottom: 50px">
             <div class="position-absolute w-100 h-100 top-0 right-0" style="z-index: 9; background-color: #000000a1">
             </div>
-            <div class="carousel-item active">
+            <div class="carousel-item active" style="max-height: 100vh">
                 <img src="{{ asset('images/blog_2.jpg') }}" class="d-block w-100" alt="..." />
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item" style="max-height: 100vh">
                 <img src="{{ asset('images/blog_1.jpg') }}" class="d-block w-100" alt="..." />
             </div>
-            <div class="carousel-item">
+            <div class="carousel-item " style="max-height: 100vh">
                 <img src="{{ asset('images/blog_2.jpg') }}" class="d-block w-100" alt="..." />
             </div>
         </div>

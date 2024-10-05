@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
@@ -21,7 +22,8 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('post.post', ['post' => $post]);
+        $categories = Category::all();
+        return view('post.post', ['post' => $post, 'categories' => $categories]);
     }
 
     public function create()

@@ -1,7 +1,7 @@
 <x-app-layout>
 
-    <div class="row ">
-        <div class=" my-2 col-md-8 ">
+    <div class="row my-2">
+        <div class="  col-md-8 ">
 
             <div class="">
                 @if ($post->image)
@@ -56,6 +56,21 @@
                     <button type="submit" class="btn  btn-primary mt-2"> submit </button>
                 </form>
             </div>
+        </div>
+        <div class="offset-md-1 col-md-3 mt-5">
+
+            <div class="card" style="width: 18rem;">
+                <div class="card-header">
+                    Categories
+                </div>
+                <ul class="list-group list-group-flush">
+
+                    @foreach ($categories as $category)
+                        <li class="list-group-item">{{ $category->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
         </div>
     </div>
 </x-app-layout>
