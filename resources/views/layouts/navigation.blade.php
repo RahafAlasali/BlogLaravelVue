@@ -67,6 +67,10 @@
                             </form>
                         </x-slot>
                     </x-dropdown>
+
+                    <i class="home">
+
+                    </i>
                 @else
                     <a href="{{ route('login') }}">
                         <button> Login </button></a>

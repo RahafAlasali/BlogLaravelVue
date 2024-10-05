@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CommentNotification;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 use App\Models\Post;
@@ -23,6 +24,7 @@ class CommentController extends Controller
     $comment->description = $request->description;
     $comment->post_id = $id;
     $comment->save();
+    $post->user->notify(new CommentNotification());
     $user = $post->user;
 
     // $user = auth()->user();

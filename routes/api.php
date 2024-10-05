@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\apiPostController;
 use App\Http\Controllers\Api\apiCommentController;
+use App\Http\Controllers\Api\apiCategoryController;
 use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,7 @@ Route::middleware('auth:api')->post('register', [AuthController::class, 'registe
 Route::apiResource('post', apiPostController::class);
 Route::apiResource('role', apiRoleController::class);
 Route::apiResource('permission', apiPermissionController::class);
+Route::apiResource('category', apiCategoryController::class);
 //['auth:api', 'can:Admin']
 // Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
 Route::apiResource('post/{post}/comment', apiCommentController::class);
