@@ -67,10 +67,17 @@
                             </form>
                         </x-slot>
                     </x-dropdown>
-
-                    <i class="home">
-
-                    </i>
+                    <button>
+                        <a href="{{ route('notifiction') }} " class="  mx-2">
+                            <i class="bi bi-bell position-relative" style="font-size: 26px">
+                                <span
+                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                    style="font-size: 12px;padding: 3px">
+                                    {{ auth()->user()->notifications->count() }}
+                                </span>
+                            </i>
+                        </a>
+                    </button>
                 @else
                     <a href="{{ route('login') }}">
                         <button> Login </button></a>
