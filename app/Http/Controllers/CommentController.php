@@ -24,7 +24,8 @@ class CommentController extends Controller
     $comment->description = $request->description;
     $comment->post_id = $id;
     $comment->save();
-    $post->user->notify(new CommentNotification());
+    $user = auth()->user();
+    $post->user->notify(new CommentNotification($post, $user));
     $user = $post->user;
 
     // $user = auth()->user();

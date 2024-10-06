@@ -16,10 +16,13 @@ class CommentNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public $post;
+    public $user;
+    public function __construct($post, $user)
     {
-        
-        
+        $this->post = $post;
+        $this->user = $user;
+
     }
 
     /**
@@ -47,8 +50,8 @@ class CommentNotification extends Notification
     {
         return [
             'title' => 'comment on your post ',
-            'body' => 'user comment in your post',
-            'URL' => route('post.show', 2)
+            'body' => ($this->user->name . ' comment in your post'),
+            'URL' => route('post.show', $this->post->id)
         ];
 
 

@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/notifiction', [NotificationController::class, 'index']);
+    Route::get('/notifiction', [NotificationController::class, 'index'])->name('notifiction');
 });
 Route::get('/role', [RoleController::class, 'create']);
 Route::post('role', [RoleController::class, 'store'])->name('role');

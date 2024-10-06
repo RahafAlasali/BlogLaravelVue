@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Psy\Readline\Hoa\Console;
 use Spatie\Permission\Models\Permission;
@@ -15,15 +16,21 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::simplePaginate(4);
-        return view('post.index', ['posts' => $posts]);
+        $posts = Post::when(request()->category, function (Builder $query, int $category) {
+            $query->where('category_id', $category);
+        })->simplePaginate(3);
+        $categories = Category::all();
+        return view('post.index', ['posts' => $posts, 'categories' => $categories]);
     }
 
     public function show($id)
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        return view('post.post', ['post' => $post, 'categories' => $categories]);
+        $lastPost = Post::orderBy('created_at', 'DESC')
+            ->take(4)->get();
+
+        return view('post.post', ['post' => $post, 'categories' => $categories, 'lastPosts' => $lastPost]);
     }
 
     public function create()

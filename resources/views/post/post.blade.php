@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <div class="row my-2">
-        <div class="  col-md-8 ">
+        <div class="col-md-8 ">
 
             <div class="">
                 @if ($post->image)
@@ -29,7 +29,7 @@
                     <p>
 
                         @foreach ($post->comment as $comment)
-                            <div class="row pt-3 align-items-center">
+                            <div class="row pt-3 d-flex align-items-center">
                                 <div class="col-2">
                                     <img src="https://cdn.vuetifyjs.com/images/lists/2.jpg" class="rounded-circle"
                                         width="60" style="height:60px" alt="">
@@ -70,7 +70,30 @@
                     @endforeach
                 </ul>
             </div>
+            <div class="card mt-4" style="width: 18rem;">
+                <div class="card-header">
+                    Last Post
+                </div>
+                <ul class="list-group list-group-flush">
 
+                    @foreach ($lastPosts as $lastPost)
+                        <a href="{{ route('post.show', $lastPost->id) }}">
+                            <li class="list-group-item d-flex justify-space align-items-center">
+                                <img src="{{ asset('images/blog_2.jpg') }}"
+                                    style="width: 72px; height: 70px;
+                                border-style: solid;
+                                border-width: 3px;
+                                border-color: rgb(255, 255, 255);
+                                object-fit: cover"
+                                    alt="" />
+
+                                <div class="mx-2"> {{ $lastPost->title }}
+                                </div>
+                            </li>
+                        </a>
+                    @endforeach
+                </ul>
+            </div>
         </div>
     </div>
 </x-app-layout>
