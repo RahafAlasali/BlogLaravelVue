@@ -10,10 +10,15 @@
         </div>
         {{-- category --}}
         <div class="d-flex justify-center my-3">
+            <button type="button" class="btn btn-outline-secondary mx-2 text-capitalize"> <a
+                    href="{{ route('post.index') }}">
+                    all
+                </a></button>
             @foreach ($categories as $category)
-                <a href="{{ route('post.index', ['category' => $category->id]) }}">
-                    <button type="button" class="btn btn-outline-secondary mx-2">{{ $category->name }}</button>
-                </a>
+                <button type="button" class="btn btn-outline-secondary  mx-2 text-capitalize"> <a
+                        href="{{ route('post.index', ['category' => $category->id]) }}">
+                        {{ $category->name }}
+                    </a></button>
             @endforeach
         </div>
         <div class="row  row-cols-md-3 g-4">
@@ -21,19 +26,19 @@
                 <div class="col">
                     <div class="card bg-transparent" style="width: 18rem; min-height: 150px;border:none">
                         <a href="{{ route('post.show', $post->id) }}" class="">
-                            <div style="border-radius: 6px">
+                            <div>
                                 @if ($post->image)
-                                    <img class=" card-img-top img-fluid w-100"
-                                        src="{{ asset('images/' . $post->image) }}" alt="">
+                                    <img class=" card-img-top  zoom" src="{{ asset('images/' . $post->image) }}"
+                                        alt="" style="border-radius: 6px">
                                 @else
-                                    <img class=" card-img-top"
+                                    <img class="card-img-top zoom"
                                         src="https://cdn.prod.website-files.com/61228f5f1250b11665938f6a/6122b12aadcedb20221d5781_1629663529921-image19.jpg"
-                                        alt="">
+                                        alt="" style="border-radius: 16px">
                                 @endif
                             </div>
                             <div class="card-body px-0 d-flex flex-column " style="justify-content:space-between">
                                 <div>
-                                    <div class="pb-2"
+                                    <div class="pb-2 text-capitalize"
                                         style="font-family: Montserrat; color: rgb(123, 78, 228);font-size: 20px">
                                         {{ $post->category->name }}
                                     </div>
@@ -68,7 +73,7 @@
     </div>
     </div>
     {{-- component  subscribe --}}
-    <div class=" py-6  text-center">
+    <div class=" py-6 mt-3 text-center">
 
         <h3> Subscribe Newsletter </h3>
         <div class="my-2">Subscribe my Newsletter for new blog posts , tips and info.</div>

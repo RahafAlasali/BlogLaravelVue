@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Spatie\Permission\Models\Role;
+use Illuminate\Database\Eloquent\Builder;
 class apiPostController extends Controller
 {
     public function __construct()
@@ -21,8 +22,9 @@ class apiPostController extends Controller
     }
     public function index()
     {
-        $posts = Post::with('comment', 'user')->paginate(3);
-
+        $posts = Post::with('comment', 'user')->when(request()->category, function (Builder $query, int $category) {
+            $query->where('category_id', $category);
+        })->simplePaginate(3);
         return PostResource::collection($posts);
     }
 
