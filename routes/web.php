@@ -44,3 +44,7 @@ Route::get('user/edit/{id}', [userController::class, 'edit']);
 Route::put('user//update/{id}', [userController::class, 'update'])->name('user.update');
 
 require __DIR__ . '/auth.php';
+
+Route::get('/{pathMatch}', function () {
+    return view(('welcom'));
+})->where('pathMatch', '.*');
