@@ -46,5 +46,5 @@ Route::put('user//update/{id}', [userController::class, 'update'])->name('user.u
 require __DIR__ . '/auth.php';
 
 Route::get('/{pathMatch}', function () {
-    return view(('welcom'));
+    return view(('welcome'));
 })->where('pathMatch', '.*');
