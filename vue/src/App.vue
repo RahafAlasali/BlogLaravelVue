@@ -1,17 +1,21 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+// import axios from "axios";
+// axios
+//   .get("https://fakestoreapi.com/products")
+//   .then((res) => {
+//     commit("setProducts", res.data);
+//   })
+//   .catch((e) => {});
 </script>
 
 <template>
   <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
+    <h1 class="text-3xl font-bold underline">Hello world!</h1>
+    <router-link :to="{ name: 'home' }">Home</router-link>
+    <router-link :to="{ name: 'about' }">About</router-link>
+
+    <router-view></router-view>
   </div>
-  <HelloWorld msg="Vite + Vue" />
 </template>
 
 <style scoped>
