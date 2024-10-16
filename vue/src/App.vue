@@ -1,28 +1,17 @@
-<script >
-// import axios from "axios";
-// axios
-//   .get("https://fakestoreapi.com/products")
-//   .then((res) => {
-//     commit("setProducts", res.data);
-//   })
-//   .catch((e) => {});
-</script>
-
 <template>
   <div>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    <!-- <router-link :to="{ name: 'home' }">Home</router-link>
-    <router-link :to="{ name: 'about' }">About</router-link> -->
     <v-app>
-      <v-container>
-        <v-btn color="primary">Hello Vuetify!</v-btn>
-      </v-container>
+      <router-view></router-view>
     </v-app>
-    <!-- <router-view></router-view> -->
   </div>
 </template>
-
+<script >
+export default {};
+</script>
 <style scoped>
+.active-item {
+  background: #1f625bc7 !important;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

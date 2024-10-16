@@ -1,27 +1,37 @@
-// import Vue from "vue";
-// import VueRouter from "vue-router";
-// import Home from "../components/HelloWorld.vue";
-// import About from "../components/About.vue";
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Dashboard from "../components/dashboard.vue";
+import Post from "../components/post.vue";
+import Layout from "../layout/dashboard.vue";
 
-// Vue.use(VueRouter);
+Vue.use(VueRouter);
 
-// const routes = [
-//     {
-//         path: '/',
-//         name: 'home',
-//         component: Home
-//     },
-//     {
-//         path: '/about',
-//         name: 'about',
-//         component: About
-//     }
-// ];
+const routes = [
+    {
+        path: '/dashboard',
+        name: 'home',
+        component: Layout,
+        children: [
+            {
+                path: "",
+                name: "dashboard",
+                component: Dashboard,
 
-// const router = new VueRouter({
-//     // mode: 'history',
-//     routes
-// });
+            },
+            {
+                path: "post",
+                name: "Post",
+                component: Post,
+
+            }
+        ]
+    }
+];
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+});
 
 
-// export default router;
+export default router;
