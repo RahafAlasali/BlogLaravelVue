@@ -7,7 +7,7 @@
       <v-col cols="12" sm="10">
         <v-container>
           <Nav />
-          <!-- <v-divider class="px-2"></v-divider> -->
+          <v-divider class="px-2"></v-divider>
           <v-main>
             <router-view> </router-view>
           </v-main>

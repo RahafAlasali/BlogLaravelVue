@@ -24,7 +24,7 @@ class apiPostController extends Controller
     {
         $posts = Post::with('comment', 'user')->when(request()->category, function (Builder $query, int $category) {
             $query->where('category_id', $category);
-        })->simplePaginate(3);
+        })->simplePaginate();
         return PostResource::collection($posts);
     }
 
