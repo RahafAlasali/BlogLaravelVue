@@ -1,15 +1,32 @@
-import { createApp } from 'vue'
+import Vue from 'vue';
+// import VueRouter from "vue-router";
 import './style.css'
 import App from './App.vue'
-import router from './router'
-import * as directives from 'vuetify/directives';
-import * as components from 'vuetify/components';
-import { createVuetify } from 'vuetify';
+
+Vue.config.productionTip = false;
+
+// Vue.use(VueRouter);
+
+// const routes = [
+//     {
+//         path: '/',
+//         name: 'home',
+//         component: Home
+//     },
+//     {
+//         path: '/about',
+//         name: 'about',
+//         component: About
+//     }
+// ];
+
+// const router = new VueRouter({
+//     routes
+// });
 
 
-const vuetify = createVuetify({
-    components,
-    directives,
-});
 
-createApp(App).use(router).use(vuetify).mount('#app')
+new Vue({
+
+    render: (h) => h(App),
+}).$mount('#app');

@@ -1,4 +1,4 @@
-<script setup>
+<script >
 // import axios from "axios";
 // axios
 //   .get("https://fakestoreapi.com/products")
@@ -11,10 +11,14 @@
 <template>
   <div>
     <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    <router-link :to="{ name: 'home' }">Home</router-link>
-    <router-link :to="{ name: 'about' }">About</router-link>
-
-    <router-view></router-view>
+    <!-- <router-link :to="{ name: 'home' }">Home</router-link>
+    <router-link :to="{ name: 'about' }">About</router-link> -->
+    <v-app>
+      <v-container>
+        <v-btn color="primary">Hello Vuetify!</v-btn>
+      </v-container>
+    </v-app>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
