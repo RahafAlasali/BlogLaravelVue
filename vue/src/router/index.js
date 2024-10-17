@@ -3,13 +3,29 @@ import VueRouter from "vue-router";
 import Dashboard from "../components/dashboard.vue";
 import Post from "../views/Post.vue";
 import Layout from "../layout/dashboard.vue";
-
+import LayoutHome from "../layout/home.vue";
+import Home from "../views/home.vue";
+import login from "../views/Login.vue";
+import Register from "../views/Register.vue"
 Vue.use(VueRouter);
 
 const routes = [
     {
+        path: '/',
+        component: LayoutHome,
+        children: [
+            {
+                path: '',
+                name: 'home',
+                component: Home,
+            }
+
+        ]
+
+    },
+
+    {
         path: '/dashboard',
-        name: 'home',
         component: Layout,
         children: [
             {
@@ -25,7 +41,17 @@ const routes = [
 
             }
         ]
-    }
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: login,
+    },
+    {
+        path: "/register",
+        name: "register",
+        component: Register,
+    },
 ];
 
 const router = new VueRouter({

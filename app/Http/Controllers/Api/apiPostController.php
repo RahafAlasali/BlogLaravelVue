@@ -22,7 +22,7 @@ class apiPostController extends Controller
     }
     public function index()
     {
-        $posts = Post::with('comment', 'user')->when(request()->category, function (Builder $query, int $category) {
+        $posts = Post::with('comment', 'user', 'category')->when(request()->category, function (Builder $query, int $category) {
             $query->where('category_id', $category);
         })->simplePaginate();
         return PostResource::collection($posts);
