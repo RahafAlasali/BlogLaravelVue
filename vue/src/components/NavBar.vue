@@ -100,12 +100,13 @@
             </template>
 
             <v-list v-for="notification in notifications" :key="notification">
-              <v-list-item link>
-                <v-list-item-title
-                  class="py-0"
-                  @click="$router.push({ name: 'dashboard' })"
-                  >{{ notification.data.body }}</v-list-item-title
-                >
+              <v-list-item
+                link
+                @click="$router.push(`${notification.data.URL}`)"
+              >
+                <v-list-item-title class="py-0">{{
+                  notification.data.body
+                }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
