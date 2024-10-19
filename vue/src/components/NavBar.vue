@@ -41,12 +41,13 @@
         <v-spacer></v-spacer>
 
         <div class="mx-1">
-          <router-link class="mx-1" to="">
+          <router-link class="mx-1" :to="{ name: 'login' }" v-if="!token">
             <v-btn icon small>
-              <v-icon> mdi-account</v-icon>
+              <v-icon class="primary--text"> mdi-account</v-icon>
             </v-btn></router-link
           >
           <v-menu
+            v-else
             open-on-hover
             bottom
             offset-y
@@ -92,7 +93,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -103,6 +104,9 @@ export default {
         { title: "about", to: "" },
       ],
     };
+  },
+  computed: {
+    ...mapState("auth", ["token"]),
   },
   methods: {
     ...mapActions("auth", ["logout"]),

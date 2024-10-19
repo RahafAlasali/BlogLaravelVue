@@ -7,6 +7,8 @@ import LayoutHome from "../layout/home.vue";
 import Home from "../views/home.vue";
 import login from "../views/Login.vue";
 import Register from "../views/Register.vue"
+import showPost from "../views/showPost.vue"
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -18,6 +20,11 @@ const routes = [
                 path: '',
                 name: 'home',
                 component: Home,
+            },
+            {
+                path: '/post/:id',
+                name: 'showPost',
+                component: showPost,
             }
 
         ]

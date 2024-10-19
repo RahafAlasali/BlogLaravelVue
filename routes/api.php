@@ -32,7 +32,7 @@ Route::group([
 
 });
 
-Route::middleware('auth:api')->post('register', [AuthController::class, 'register']);
+Route::middleware('auth:api')->post('register', [AuthController::class, 'register']);  //
 
 // Route::middleware('auth:api')->apiResource('post', apiPostController::class);
 Route::apiResource('post', apiPostController::class);

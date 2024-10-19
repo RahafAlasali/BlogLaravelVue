@@ -15,6 +15,7 @@
         <div class="d-flex justify-space-between align-center pa-4">
           <div>
             <v-text-field
+            v-model="search"
               prepend-inner-icon="mdi-magnify"
               label="Search"
               single-line
@@ -25,6 +26,11 @@
             <v-btn color="primary" dark class="mb-2 pa-2"> Add </v-btn>
           </div>
         </div>
+      </template>
+
+      <template v-slot:item.actions>
+        <v-icon small class="mr-2"> mdi-pencil </v-icon>
+        <v-icon small> mdi-delete </v-icon>
       </template>
     </v-data-table>
     <div class="text-center pt-2">
@@ -44,8 +50,9 @@ export default {
     return {
       headers: [
         { text: "id", value: "id", align: "center" },
-        { text: "Title", value: "title", align: "center", width: "500px" },
+        { text: "Title", value: "title", align: "center" },
         { text: "Description", value: "description", align: "center" },
+        { text: "Actions", value: "actions", sortable: false },
       ],
       data: [],
       search: null,

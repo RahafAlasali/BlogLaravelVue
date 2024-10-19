@@ -30,8 +30,9 @@ class apiPostController extends Controller
 
     public function show($id)
     {
-        $post = Post::findOrFail($id)->with('comment');
-        return response()->json($post);
+        // return response()->json(['id', $id]);
+        $post = Post::with('comment', 'category')->findOrFail($id);
+        return PostResource::make($post);
     }
 
 
