@@ -86,6 +86,29 @@
               </v-list-item>
             </v-list>
           </v-menu>
+          <v-menu
+            open-on-hover
+            bottom
+            offset-y
+            origin="top center"
+            transition="scale-transition"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn icon v-on="on" v-bind="attrs">
+                <v-icon class="primary--text">mdi-bell-outline</v-icon>
+              </v-btn>
+            </template>
+
+            <v-list v-for="notification in notifications" :key="notification">
+              <v-list-item link>
+                <v-list-item-title
+                  class="py-0"
+                  @click="$router.push({ name: 'dashboard' })"
+                  >{{ notification.data.body }}</v-list-item-title
+                >
+              </v-list-item>
+            </v-list>
+          </v-menu>
         </div>
       </v-toolbar>
     </div>
@@ -93,7 +116,8 @@
 </template>
 
 <script>
-import { mapMutations, mapActions, mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -103,6 +127,7 @@ export default {
         { title: "contact", to: "" },
         { title: "about", to: "" },
       ],
+      notifications: [],
     };
   },
   computed: {
@@ -114,6 +139,20 @@ export default {
       this.logout();
       // this.$router.push("/");
     },
+    async getNotification() {
+      // debugger;
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + localStorage.getItem("access_token");
+      await axios
+        .get(`http://localhost:8000/api/notifiction`)
+        .then((res) => {
+          this.notifications = res.data.data;
+        })
+        .catch((e) => {});
+    },
+  },
+  mounted() {
+    this.getNotification();
   },
 };
 </script>

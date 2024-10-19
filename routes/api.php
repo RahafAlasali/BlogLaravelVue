@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\apiPostController;
 use App\Http\Controllers\Api\apiCommentController;
 use App\Http\Controllers\Api\apiCategoryController;
+use App\Http\Controllers\Api\apiNotification;
 use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::apiResource('post', apiPostController::class);
 Route::apiResource('role', apiRoleController::class);
 Route::apiResource('permission', apiPermissionController::class);
 Route::apiResource('category', apiCategoryController::class);
+Route::get('/notifiction', [apiNotification::class, 'index'])->name('notifiction');
 //['auth:api', 'can:Admin']
 // Route::middleware('auth:api')->apiResource('comment', apiCommentController::class);
 Route::apiResource('post/{post}/comment', apiCommentController::class);

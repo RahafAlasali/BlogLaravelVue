@@ -28,7 +28,6 @@ export default {
           },
         })
         .then((res) => {
-          commit("setLogin", true);
           localStorage.setItem("access_token", res.data.access_token);
         });
     },
