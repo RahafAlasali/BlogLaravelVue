@@ -13,7 +13,7 @@ class apiPostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role_or_permission:Admin'])->only(['destroy', 'store']);
+        // $this->middleware(['role_or_permission:Admin'])->only(['destroy', 'store']);
         // $this->middleware(['role:Admin'])->only(['destroy', 'store']);
     }
     public function register()
@@ -53,7 +53,7 @@ class apiPostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->title = $req->title;
-        $post->description = $req->desc;
+        $post->description = $req->description;
         $post->save();
         return PostResource::make($post);
     }
