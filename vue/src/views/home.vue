@@ -30,39 +30,25 @@
   </div>
 </template>
 <script>
-import Post from "../components/post.vue";
-import axios from "axios";
+import Post from "@/components/post.vue";
+import { mapActions, mapState } from "vuex";
+
 export default {
   components: {
     Post,
   },
   data() {
-    return {
-      posts: [],
-      categories: [],
-    };
+    return {};
   },
 
+  computed: {
+    ...mapState("core", ["posts", "categories"]),
+  },
   methods: {
-    async getCategory() {
-      await axios
-        .get("http://localhost:8000/api/category")
-        .then((res) => {
-          this.categories = res.data;
-        })
-        .catch((e) => {});
-    },
-    async getProducts() {
-      await axios
-        .get("http://localhost:8000/api/post")
-        .then((res) => {
-          this.posts = res.data.data;
-        })
-        .catch((e) => {});
-    },
+    ...mapActions("core", ["getPosts", "getCategory"]),
   },
   mounted() {
-    this.getProducts();
+    this.getPosts();
     this.getCategory();
   },
 };

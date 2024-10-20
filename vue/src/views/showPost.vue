@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="pt-5">
       <v-col cols="7">
         <v-img
           src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -39,12 +39,29 @@
           <v-btn color="primary" @click="submit">Submit</v-btn>
         </div>
       </v-col>
+      <v-col cols="3" offset="2">
+        <v-card class="mx-auto pa-2" tile>
+          <h3 class="py-1 text-center">Categories</h3>
+          <v-divider></v-divider>
+          <v-list v-for="(category, i) in categories" :key="i" class="py-0">
+            <v-list-item>
+              <!-- <v-list-item-icon>
+                  <v-icon v-text="item.icon"></v-icon>
+                </v-list-item-icon> -->
+              <v-list-item-content>
+                <v-list-item-title>{{ category.name }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -53,7 +70,11 @@ export default {
       desc: null,
     };
   },
+  computed: {
+    ...mapState("core", ["categories"]),
+  },
   methods: {
+    ...mapActions("core", ["getCategory"]),
     async getPostId() {
       await axios
         .get(`http://localhost:8000/api/post/${this.id}`)
@@ -76,10 +97,12 @@ export default {
         .then((res) => {})
         .catch();
     },
+    // to store
   },
   mounted() {
     this.id = this.$route.params.id;
     this.getPostId();
+    this.getCategory();
   },
 };
 </script>

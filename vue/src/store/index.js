@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import auth from "./auth";
-import axios from "axios";
+import core from "./core";
 
 Vue.use(Vuex);
 
@@ -13,6 +13,7 @@ export default new Vuex.Store({
     mutations: {},
     actions: {},
     modules: {
-        auth
+        auth,
+        core
     },
 });
