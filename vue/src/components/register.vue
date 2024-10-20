@@ -8,13 +8,13 @@
     </h4>
     <v-form @submit.prevent="submit" ref="form" v-model="valid" lazy-validation>
       <v-text-field
-        v-model="name"
+        v-model="user.name"
         :rules="[(v) => !!v || 'field Required']"
         label="name"
       >
       </v-text-field>
       <v-text-field
-        v-model="email"
+        v-model="user.email"
         label="email"
         :rules="[
           (v) => !!v || 'field Required',
@@ -22,14 +22,21 @@
         ]"
       ></v-text-field>
       <v-text-field
-        v-model="password"
+        v-model="user.password"
         label="password"
         type="password"
         :rules="[(v) => !!v || 'field Required']"
       ></v-text-field>
 
       <v-card-actions class="d-flex justify-center">
-        <v-btn large color="primary" type="submit" rounded style="width: 50%">
+        <v-btn
+          large
+          color="primary"
+          type="submit"
+          rounded
+          style="width: 50%"
+          @click="submit"
+        >
           signUp
         </v-btn>
       </v-card-actions>
@@ -44,18 +51,19 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      name: "",
-      email: null,
-      password: null,
+      user: { name: "", email: null, password: null },
       valid: true,
     };
   },
   methods: {
+    ...mapActions("auth", ["register"]),
     submit() {
       this.$refs.form.validate();
+      this.register(this.user);
     },
   },
 };

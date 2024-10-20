@@ -34,6 +34,9 @@
               </div>
             </div>
           </div>
+
+          <v-textarea label="comment" solo v-model="desc" rows="4"></v-textarea>
+          <v-btn color="primary" @click="submit">Submit</v-btn>
         </div>
       </v-col>
     </v-row>
@@ -47,6 +50,7 @@ export default {
     return {
       post: null,
       id: null,
+      desc: null,
     };
   },
   methods: {
@@ -57,6 +61,20 @@ export default {
           this.post = res.data.data;
         })
         .catch((e) => {});
+    },
+    submit() {
+      axios
+        .post(
+          `http://localhost:8000/api/post/${this.id}/comment`,
+          { description: this.desc },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {})
+        .catch();
     },
   },
   mounted() {

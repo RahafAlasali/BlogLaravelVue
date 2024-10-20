@@ -28,7 +28,19 @@ export default {
           },
         })
         .then((res) => {
+          // commit token 
           localStorage.setItem("access_token", res.data.access_token);
+        });
+    },
+    async register({ commit }, user) {
+      axios
+        .post("/register", user, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((res) => {
+          localStorage.setItem("access_token", res.data.authorisation.token);
         });
     },
     async logout(context) {
