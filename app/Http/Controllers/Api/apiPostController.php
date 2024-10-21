@@ -22,9 +22,10 @@ class apiPostController extends Controller
     }
     public function index()
     {
+        $perPage = request()->input('per_page', 10);
         $posts = Post::with('comment', 'user', 'category')->when(request()->category, function (Builder $query, int $category) {
             $query->where('category_id', $category);
-        })->simplePaginate();
+        })->paginate($perPage);
         return PostResource::collection($posts);
     }
 

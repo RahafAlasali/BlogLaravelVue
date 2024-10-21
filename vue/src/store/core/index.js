@@ -36,7 +36,7 @@ export default {
                 .get("http://localhost:8000/api/post")
                 .then((res) => {
 
-                    commit('setPosts', res.data.data)
+                    commit('setPosts', res.data)
                 })
                 .catch((e) => { });
         },
